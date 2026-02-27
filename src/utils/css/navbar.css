@@ -1,0 +1,36 @@
+.navbar-local {
+    width: 15%;
+    height: 100vh;
+    background-color: #343A40; /* opcional para que el fondo cubra todo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-logo img {
+    width: 80px;      /* ajusta tamaño */
+    margin: 16px 0;   /* espacio alrededor */
+}
+
+.menu{
+    width: 100%;
+    height: 100%;
+    background-color: #343A40;
+    border: none;          /* quitar borde blanco del menu */
+    box-shadow: none;      /* quitar sombra si la hubiera */
+}
+
+.menu .p-menuitem-text {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.menu .p-menuitem-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.menu .p-menuitem-link:hover {
+    background-color: #343A40;
+}

@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import Generales from './pages/generales';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { isTokenValid } from './hooks/tokenUtils';
+
+const PrivateRoute = ({ children }) => {
+  return children;
+  const tokenValid = isTokenValid();
+  if (!tokenValid) {
+    sessionStorage.clear();
+    return window.location.href = 'https://track.milac.com.mx/Warehouse/dashboardRequest50';
+  }
+  const isAuthenticated = sessionStorage.getItem('token');
+  //return children;
+  return isAuthenticated ? children : window.location.href = 'https://track.milac.com.mx/Warehouse/dashboardRequest50';
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router basename='/CentroCostos'>
+        <Routes>
+          <Route path='/' element={<PrivateRoute><Generales /></PrivateRoute>} />
+          <Route path='/generales' element={<PrivateRoute><Generales /></PrivateRoute>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
