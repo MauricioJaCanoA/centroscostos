@@ -120,6 +120,7 @@ function Generales() {
         try {
             const res = await axios.get(baseUrl + '/CentroCostos/api/getGenerales', { params: params });        
             const dataWithId = res.data.map((item, index) => ({ ...item, id_unique: index }));
+            console.log('Data recibida:', res.data);
             setGenerales(dataWithId);
             setLoader(false);
         } catch (err) {
@@ -146,7 +147,6 @@ function Generales() {
         getGenerales();
         getDivisiones();
     }, []);
-
 
     // Group By Year -> Month -> Data
     const getCascadingData = () => {
@@ -294,7 +294,10 @@ function Generales() {
             groups[yearKey].months[monthKey].items.push(item);
         });
 
+        console.log(groups);
+
         
+
         // Convert objects to arrays for DataTable
         return Object.values(groups).map(yearGroup => ({
             ...yearGroup,
